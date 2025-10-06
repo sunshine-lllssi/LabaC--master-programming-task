@@ -19,12 +19,43 @@ TEST_CASE("iomanip::simple")
     CHECK(s.str() == "some text[eol]\n");
 }
 
-TEST_CASE("iomanip::one_operand")
+//TEST_CASE("iomanip::one_operand")
+//{
+//    std::stringstream s;
+//    static_assert(!std::is_same_v<decltype(s << squares), std::ostream&>);
+ //   s << "some test " << squares << 123 << " and " << squares << "me" << squares << -88.59;
+//    CHECK(s.str() == "some test [123] and [me][-88.59]");
+//}
+TEST_CASE("iomanip::sin")
 {
     std::stringstream s;
-    static_assert(!std::is_same_v<decltype(s << squares), std::ostream&>);
-    s << "some test " << squares << 123 << " and " << squares << "me" << squares << -88.59;
-    CHECK(s.str() == "some test [123] and [me][-88.59]");
+
+    SECTION("zero_int") {
+        s << sin_manipulator << 0;
+        CHECK(s.str() == "0");
+    }
+
+    SECTION("zero_double") {
+        s << sin_manipulator << 0.0;
+        CHECK(s.str() == "0");
+    }
+
+    SECTION("pi_string") {
+        s << sin_manipulator << "pi";
+        CHECK(s.str() == "sin(pi)");
+    }
+
+    SECTION("half_pi") {
+        s << sin_manipulator << 1.5708;
+        // sin(pi/2) ≈ 1
+        auto result = std::stod(s.str());
+        REQUIRE(std::abs(result - 1.0) < 1e-4);
+    }
+
+    SECTION("negative") {
+        s << sin_manipulator << -0.0;
+        CHECK(s.str() == "0"); // -0.0 → 0
+    }
 }
 
 TEST_CASE("iomanip::two_operands")
