@@ -1,0 +1,9 @@
+/workspaces/LabaC--master-programming-task/lab2/build/CMakeFiles/tests_iomanip.dir
+/workspaces/LabaC--master-programming-task/lab2/build/CMakeFiles/edit_cache.dir
+/workspaces/LabaC--master-programming-task/lab2/build/CMakeFiles/rebuild_cache.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/CMakeFiles/edit_cache.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/CMakeFiles/rebuild_cache.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/src/CMakeFiles/Catch2.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/src/CMakeFiles/Catch2WithMain.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/src/CMakeFiles/edit_cache.dir
+/workspaces/LabaC--master-programming-task/lab2/build/lab2_catch2_build/src/CMakeFiles/rebuild_cache.dir

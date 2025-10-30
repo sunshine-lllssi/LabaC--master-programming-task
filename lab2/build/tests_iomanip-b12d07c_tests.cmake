@@ -1,0 +1,7 @@
+add_test( iomanip::simple /workspaces/LabaC--master-programming-task/lab2/build/tests_iomanip iomanip::simple  )
+set_tests_properties( iomanip::simple PROPERTIES WORKING_DIRECTORY /workspaces/LabaC--master-programming-task/lab2/build)
+add_test( iomanip::one_operand /workspaces/LabaC--master-programming-task/lab2/build/tests_iomanip iomanip::one_operand  )
+set_tests_properties( iomanip::one_operand PROPERTIES WORKING_DIRECTORY /workspaces/LabaC--master-programming-task/lab2/build)
+add_test( iomanip::two_operands /workspaces/LabaC--master-programming-task/lab2/build/tests_iomanip iomanip::two_operands  )
+set_tests_properties( iomanip::two_operands PROPERTIES WORKING_DIRECTORY /workspaces/LabaC--master-programming-task/lab2/build)
+set( tests_iomanip_TESTS iomanip::simple iomanip::one_operand iomanip::two_operands)

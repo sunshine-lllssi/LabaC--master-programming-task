@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tests_iomanip.dir/tests/iomanip.cpp.o CMakeFiles/tests_iomanip.dir/gprotect.cpp.o -o tests_iomanip  lab2_catch2_build/src/libCatch2Main.a lab2_catch2_build/src/libCatch2.a 

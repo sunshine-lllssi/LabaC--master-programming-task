@@ -1,0 +1,5 @@
+if(EXISTS "/workspaces/LabaC--master-programming-task/lab2/build/tests_iomanip-b12d07c_tests.cmake")
+  include("/workspaces/LabaC--master-programming-task/lab2/build/tests_iomanip-b12d07c_tests.cmake")
+else()
+  add_test(tests_iomanip_NOT_BUILT-b12d07c tests_iomanip_NOT_BUILT-b12d07c)
+endif()

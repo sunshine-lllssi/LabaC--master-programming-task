@@ -18,17 +18,16 @@ TEST_CASE("iomanip::simple")
     s << "some text" << endm;
     CHECK(s.str() == "some text[eol]\n");
 }
-
-//TEST_CASE("iomanip::one_operand")
-//{
-//    std::stringstream s;
-//    static_assert(!std::is_same_v<decltype(s << squares), std::ostream&>);
- //   s << "some test " << squares << 123 << " and " << squares << "me" << squares << -88.59;
-//    CHECK(s.str() == "some test [123] and [me][-88.59]");
-//}
-TEST_CASE("iomanip::sin")
+TEST_CASE("iomanip::one_operand")
 {
     std::stringstream s;
+    static_assert(!std::is_same_v<decltype(s << sin_manipulator), std::ostream&>);
+    //s << "some test " << squares << 123 << " and " << sin_manipulator << "me" << squares << -88.59;
+    //CHECK(s.str() == "some test [123] and [me][-88.59]");
+//}
+//TEST_CASE("iomanip::sin")
+//{
+    //std::stringstream s;
 
     SECTION("zero_int") {
         s << sin_manipulator << 0;
@@ -54,9 +53,11 @@ TEST_CASE("iomanip::sin")
 
     SECTION("negative") {
         s << sin_manipulator << -0.0;
-        CHECK(s.str() == "0"); // -0.0 → 0
+        CHECK(s.str() == "0"); 
     }
 }
+
+
 
 TEST_CASE("iomanip::two_operands")
 {

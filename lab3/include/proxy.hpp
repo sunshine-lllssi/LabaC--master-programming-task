@@ -15,20 +15,33 @@ class ptr_holder
 public:
     ptr_holder(T* ptr): ptr_(ptr) {}
 
-    //{ describe proxy object
-    class proxy: private ???
+    //{ describe proxy object - обертка другого обьекта(или это посредник, который выглядит как настоящий объект, но может делать дополнительные фишки)
+    class proxy: private std::lock_guard<MutexInjection>
     {
     public:
-        proxy(???): ???
+        // Конструктор прокси:
+        // 1. Вызывает конструктор базового класса std::lock_guard, который блокирует мьютекс.
+        // 2. Сохраняет указатель для последующего доступа.
+        proxy(T* ptr, MutexInjection& mtx): 
+            std::lock_gruard<MutexInjection>(mtx),
+            prt_(ptr) 
+             
         {}
-
+        // operator-> для прокси-объекта, возвращающий сырой указатель.
+        // Это завершает "рекурсивную" цепочку вызовов.
+        T* operator ->() const
+        {
+            return prt_;
+        }
     private:
-        ???
+        T* prt_;
     };
-
-    ??? operator -> () const
+    // operator-> для ptr_holder, возвращающий наш прокси-объект.
+    // Вызов этого оператора создает временный прокси-объект, который
+    // живет до конца полного выражения (до точки с запятой).
+    proxy operator -> () const
     {
-        return ???;
+        return proxy(ptr_, mutex_);
     }
     //}
 
