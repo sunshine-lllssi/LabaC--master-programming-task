@@ -23,18 +23,18 @@ public:
         // 1. Вызывает конструктор базового класса std::lock_guard, который блокирует мьютекс.
         // 2. Сохраняет указатель для последующего доступа.
         proxy(T* ptr, MutexInjection& mtx): 
-            std::lock_gruard<MutexInjection>(mtx),
-            prt_(ptr) 
+            std::lock_guard<MutexInjection>(mtx),
+            ptr_(ptr) 
              
         {}
         // operator-> для прокси-объекта, возвращающий сырой указатель.
         // Это завершает "рекурсивную" цепочку вызовов.
         T* operator ->() const
         {
-            return prt_;
+            return ptr_;
         }
     private:
-        T* prt_;
+        T* ptr_;
     };
     // operator-> для ptr_holder, возвращающий наш прокси-объект.
     // Вызов этого оператора создает временный прокси-объект, который
