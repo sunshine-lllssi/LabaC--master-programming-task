@@ -17,7 +17,7 @@ public:
     ptr_holder(T* ptr): ptr_(ptr) {}
 
     //{ describe proxy object - обертка другого обьекта(или это посредник, который выглядит как настоящий объект, но может делать дополнительные фишки)
-    class proxy: private std::lock_guard<MutexInjection>
+    class proxy: private std::lock_guard<MutexInjection> //управление покидает область, в которой был создан объект lock_guard, lock_guard уничтожается, а мьютекс освобождается.
     {
     public:
         // Конструктор прокси -функция, которая создаёт временный объект-обёртку (proxy), автоматически захватывая мьютекс 
