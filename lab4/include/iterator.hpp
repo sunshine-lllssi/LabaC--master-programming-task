@@ -27,7 +27,7 @@ public:
 
 private:
     friend class boost::iterator_core_access;
-    size_t width;
+    size_t width; //это целочисленный тип без знака, возвращаемый следующими операторами:размер, размер..., выровнять. Тут размерность.(не может быть отрицательной)
     size_t stride;
     int index;
 
