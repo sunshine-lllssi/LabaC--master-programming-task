@@ -14,7 +14,8 @@
 namespace json
 {
     template<class Difference>
-    class iterator_exhausted: public std::range_error
+    class iterator_exhausted: public std::range_error // класс ошибки наследуется от std::range_error,
+    //  Используется когда парсер не смог обработать всю строку
     {
     public:
         iterator_exhausted(Difference diff):
@@ -31,20 +32,24 @@ namespace json
         Difference diff_;
     };
 
-    template<class Result, class Iterator, class Grammar>
+    template<class Result, class Iterator, class Grammar> 
+    //Result - тип, в который парсим 
+    // Iterator - итераторы входных данных
+    // Grammar - грамматика парсера
+    //Вызывает x3::phrase_parse, если парсинг неудачный - ошибки, если недоконца iterator_exhausted, возвращаем распарсенный результат
     constexpr auto load(Iterator first, Iterator last, const Grammar& gr)
     {
         namespace x3 = boost::spirit::x3;
         Result result;
-        if (!x3::phrase_parse(first, last, gr, x3::ascii::space, result))
+        if (!x3::phrase_parse(first, last, gr, x3::ascii::space, result)) //! - ЕСЛИ ПАРСИНГ НЕ УДАЛСЯ
             throw std::runtime_error("Invalid input data");
 
         if (first != last)
-            throw iterator_exhausted(std::distance(first, last));
+            throw iterator_exhausted(std::distance(first, last)); //вычисляет количество элементов между двумя итераторами
 
         return result;
     }
-
+// обертка (принимает строку вместо итераторов, получение итераторов на начало и конец контейнера (обычно строки))
     template<class Result, class Grammar>
     constexpr auto load_from_string(const std::string& message, const Grammar& gr)
     {

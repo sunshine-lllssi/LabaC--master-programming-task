@@ -3,7 +3,7 @@
  * @date 2018-08-18
  * @author Anonymous
  */
-
+//для парсера строк в кавычках
 #include <catch2/catch_all.hpp>
 
 #include <json.hpp>
@@ -46,7 +46,7 @@ newlines
     CHECK(i == "text with\nnewlines\n");
 }
 
-TEST_CASE("json::quoted_string::failure")
+TEST_CASE("json::quoted_string::failure") // тест ошибок (1 нет ковычек, незакрытая, вне кавычек)
 {
     auto s = {
         "abc",
