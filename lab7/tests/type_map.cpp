@@ -13,6 +13,7 @@
 TEST_CASE("type_map::int")
 {
     const type_map<int, int, float, uint8_t> m{4, 86, -9};
+    //тип значений - int, список типов ключей -  int, float, uint8_t. m хранить 3 элемента [4, 86, -9]
 
     SECTION("std::get")
     {
