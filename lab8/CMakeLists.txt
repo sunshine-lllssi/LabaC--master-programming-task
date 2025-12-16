@@ -1,4 +1,9 @@
-return() # Remove this line
+cmake_minimum_required(VERSION 3.14)
+project(strided_range LANGUAGES CXX)
+
+find_package(Boost REQUIRED)
+find_package(Catch2 REQUIRED)
+
 add_library(strided_range INTERFACE)
 target_include_directories(strided_range INTERFACE include)
 target_link_libraries(strided_range INTERFACE Boost::boost)
@@ -6,4 +11,6 @@ target_link_libraries(strided_range INTERFACE Boost::boost)
 file(GLOB TESTS tests/*.cpp)
 add_executable(tests_strided_range ${TESTS})
 target_link_libraries(tests_strided_range strided_range Catch2::Catch2WithMain)
+
+include(Catch)
 catch_discover_tests(tests_strided_range)
